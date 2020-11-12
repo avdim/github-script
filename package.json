@@ -16,7 +16,7 @@
     "pre-commit": "run-s style:write test build",
     "test": "jest"
   },
-  "husky": {
+  "huskyOLD": {
     "hooks": {
       "pre-commit": "npm run pre-commit && git add dist/"
     }
