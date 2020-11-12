@@ -1,0 +1,1 @@
+jest --testNamePattern=octokit-tests
