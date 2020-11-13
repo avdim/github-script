@@ -14,8 +14,6 @@ clear
 docker-compose --file npm-registries.yml up -d
 sleep 4
 echo "start"
-#curl http://localhost:55551
-#curl http://localhost:55552
 
 #npm login --registry=http://localhost:55551 --scope=@tutu
 npm-cli-login -u Username -p Password -e test@example.com -r http://localhost:55551

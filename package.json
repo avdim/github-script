@@ -40,7 +40,15 @@
     "@actions/io": "^1.0.2",
     "@octokit/core": "^3.1.2",
     "@octokit/plugin-paginate-rest": "^2.3.0",
-    "@octokit/plugin-rest-endpoint-methods": "^4.1.2"
+    "@octokit/plugin-rest-endpoint-methods": "^4.1.2",
+    "async": "^3.2.0",
+    "compressing": "^1.5.1",
+    "graceful-fs": "^4.2.4",
+    "lodash.curry": "^4.1.1",
+    "mute": "^2.0.6",
+    "mv": "^2.1.1",
+    "npm": "^7.0.0",
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "@types/jest": "^26.0.10",
