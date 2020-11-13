@@ -1,0 +1,27 @@
+{
+  "name": "test-package",
+  "version": "1.0.0",
+  "description": "test-package description",
+  "main": "test-package-entry-point.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "publishConfig": {
+    "registry": "http://localhost:55551"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tutu-ru-mobile/js-npm-migrate.git"
+  },
+  "author": "tutu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tutu-ru-mobile/js-npm-migrate/issues"
+  },
+  "homepage": "https://github.com/tutu-ru-mobile/js-npm-migrate#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "npm-cli-login": "^0.1.1",
+    "npm-migrate": "^1.3.0"
+  }
+}

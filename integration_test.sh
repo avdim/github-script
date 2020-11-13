@@ -17,7 +17,9 @@ echo "start"
 
 #npm login --registry=http://localhost:55551 --scope=@tutu
 npm-cli-login -u Username -p Password -e test@example.com -r http://localhost:55551
-cd /Users/dim/Desktop/github/tutu/js-npm-migrate
+#cd /Users/dim/Desktop/github/tutu/js-npm-migrate
+cd test-package-dir
+npm ci
 npm publish
 cd -
 npm-cli-login -u Username -p Password -e test@example.com -r http://localhost:55552
