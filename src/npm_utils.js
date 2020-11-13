@@ -1,4 +1,4 @@
-const npm = require('npm')
+const npm = require('./npm.js')
 const mv = require('mv')
 const curry = require('lodash.curry')
 const async = require('async')

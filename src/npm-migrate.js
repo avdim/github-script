@@ -5,7 +5,7 @@ const curry = require('lodash.curry')
 const { unpack, pack } = require('./tgz')
 const cleanup = require('./cleanup')
 const { getVersionList, getTarballs, publishSeries } = require('./npm_utils')
-const updatePackage = require('./update')
+const updatePackage = require('./update2')
 
 module.exports = function (moduleName, oldRegistry, newRegistry, options = { debug: false }) {
 
