@@ -16,19 +16,14 @@ sleep 4
 echo "start"
 
 #npm login --registry=http://localhost:55551 --scope=@tutu
-npm-cli-login -u Username -p Password -e test@example.com -r http://localhost:55551
-#cd /Users/dim/Desktop/github/tutu/js-npm-migrate
+node_modules/.bin/npm-cli-login -u Username -p Password -e test@example.com -r http://localhost:55551
+node_modules/.bin/npm-cli-login -u Username -p Password -e test@example.com -r http://localhost:55552
+
 cd test-package-dir
 npm ci
 npm publish
 cd -
-npm-cli-login -u Username -p Password -e test@example.com -r http://localhost:55552
 
-#echo "check: http://localhost:55551"
-#read check1
-jest --testNamePattern=migrate && echo "jest migrate test success" && clear
-#npm test
+node_modules/.bin/jest --testNamePattern=migrate && echo "jest migrate test success" && clear
 
-#echo "check: http://localhost:55552"
-#read check2
 #clear #todo clear if fails

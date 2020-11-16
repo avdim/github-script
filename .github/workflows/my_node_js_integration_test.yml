@@ -19,10 +19,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install -g npm-cli-login
-    - run: npm install -g jest
-#    - run: npm ci #todo better use ci
-    - run: npm install
+    - run: npm ci
     - run: ./integration_test.sh
 #     - run: npm run build --if-present
 #     - run: npm test
