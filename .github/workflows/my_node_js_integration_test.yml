@@ -20,6 +20,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install -g npm-cli-login
+    - run: npm install -g jest
 #    - run: npm ci #todo better use ci
     - run: npm install
     - run: ./integration_test.sh
