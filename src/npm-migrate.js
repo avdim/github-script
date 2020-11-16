@@ -4,7 +4,7 @@ const curry = require('lodash.curry')
 
 const { unpack, pack } = require('./tgz')
 const cleanup = require('./cleanup')
-const { getVersionList, getTarballs, publishSeries } = require('./npm_utils')
+const { getDiffVersionList, getTarballs, publishSeries } = require('./npm_utils')
 const updatePackage = require('./update2')
 
 module.exports = function (moduleName, oldRegistry, newRegistry, options = { debug: false }) {
@@ -22,7 +22,7 @@ module.exports = function (moduleName, oldRegistry, newRegistry, options = { deb
     let curried_publishSeries = curry(publishSeries)
     curried_publishSeries = curried_publishSeries(newRegistry)
 
-    return getVersionList(moduleName, oldRegistry, newRegistry)
+    return getDiffVersionList(moduleName, oldRegistry, newRegistry)
         .then(curried_getTarballs)
         .then(unpack)
         .then(curried_updatePackage)

@@ -16,6 +16,7 @@ jobs:
           path: ~/.npm
           key: ${{runner.os}}-npm-${{hashFiles('**/package-lock.json')}}
           restore-keys: ${{runner.os}}-npm-
-      - run: npm ci
+#      - run: npm ci #todo better use ci
+      - run: npm install
       - run: npm run style:check
       - run: npm test

@@ -82,7 +82,7 @@ function getRemainingVersions (moduleName, oldRegistry, newRegistry, oldRegistry
 
 }
 
-module.exports.getVersionList = function (moduleName, oldRegistry, newRegistry) {
+module.exports.getDiffVersionList = function (moduleName, oldRegistry, newRegistry) {
 
     return new Promise((resolve, reject) => {
 
@@ -104,6 +104,27 @@ module.exports.getVersionList = function (moduleName, oldRegistry, newRegistry) 
                     });
             })
         })
+    })
+}
+
+module.exports.getVersionList = function (moduleName, registryStr) {
+
+    return new Promise((resolve, reject) => {
+
+      const newRegistry = registryStr
+      console.log("newRegistry: ", newRegistry)
+      npm.config.set('registry', newRegistry);
+      npm.commands.info([moduleName], (err, data) => {
+
+        const latest = Object.keys(data)[0];
+        const newRegistryVersions = data[latest].versions;
+        console.log('New Registry Versions', newRegistryVersions);
+
+        resolve(newRegistryVersions);
+
+      });
+      // npm.config.set('registry', oldRegistry);
+
     })
 }
 
