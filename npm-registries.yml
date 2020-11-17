@@ -3,7 +3,7 @@ version: '2'
 services:
   npm1:
     container_name: npm1
-    image: verdaccio/verdaccio
+    image: "verdaccio/verdaccio:4.8.1"
     ports:
       - "55551:4873"
     volumes:
@@ -11,7 +11,7 @@ services:
 
   npm2:
     container_name: npm2
-    image: verdaccio/verdaccio
+    image: "verdaccio/verdaccio:4.8.1"
     ports:
       - "55552:4873"
 #    expose:

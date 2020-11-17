@@ -11,13 +11,13 @@ function clear {
 
 clear
 
-docker-compose --file npm-registries.yml up -d
-sleep 4
-echo "start"
+#docker-compose --file npm-registries.yml up -d
+#sleep 4
+#echo "start"
 
 #npm login --registry=http://localhost:55551 --scope=@tutu
-node_modules/.bin/npm-cli-login -u Username -p Password -e test@example.com -r http://localhost:55551
-node_modules/.bin/npm-cli-login -u Username -p Password -e test@example.com -r http://localhost:55552
+#node_modules/.bin/npm-cli-login -u Username -p Password -e test@example.com -r http://localhost:55551
+#node_modules/.bin/npm-cli-login -u Username -p Password -e test@example.com -r http://localhost:55552
 
 cd test-package-dir
 npm ci
