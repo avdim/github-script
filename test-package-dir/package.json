@@ -7,7 +7,7 @@
     "test": "node test.js"
   },
   "publishConfig": {
-    "registry": "http://localhost:55551"
+    "registry": "http://0.0.0.0:4873"
   },
   "repository": {
     "type": "git",

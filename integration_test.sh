@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function clear {
   echo "clear"
   docker kill $(docker ps -q)
@@ -19,10 +21,10 @@ clear
 #node_modules/.bin/npm-cli-login -u Username -p Password -e test@example.com -r http://localhost:55551
 #node_modules/.bin/npm-cli-login -u Username -p Password -e test@example.com -r http://localhost:55552
 
-cd test-package-dir
-npm ci
-npm publish
-cd -
+#cd test-package-dir
+#npm ci
+#npm publish
+#cd -
 
 node_modules/.bin/jest --testNamePattern=migrate && echo "jest migrate test success" && clear
 
