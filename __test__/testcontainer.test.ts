@@ -44,18 +44,19 @@ describe('testcontainer', () => {
   test('hello get', async () => {
     jest.setTimeout(2 * 60_000);
 
-    const environment = await new DockerComposeEnvironment(
-      ROOT_PATH,
-      "hello-compose.yml"
-    ).up();
+    // const environment = await new DockerComposeEnvironment(
+    //   ROOT_PATH,
+    //   "hello-compose.yml"
+    // ).up();
 
-    // const startedContainer = await new GenericContainer("avdim/ktor_hello", "latest")
-    //   .withExposedPorts(8080)
-    //   .start()
-
+    const startedContainer = await new GenericContainer("avdim/ktor_hello", "latest")
+      .withExposedPorts(8080)
+      .start()
+    let mappedPort: number = startedContainer.getMappedPort(8080);
+    console.log("mappedPort: ", mappedPort)
 
     try {
-      const resp = await got('http://localhost:8080')
+      const resp = await got(`http://localhost:${mappedPort}`)
       console.log("resp.body: ", resp.body)
       const strBody: string = resp.body
       expect(strBody.indexOf("Hello") >= 0).toEqual(true)
@@ -67,9 +68,8 @@ describe('testcontainer', () => {
       // })
       // console.log("response1: ", response1)
     } finally {
-      // await startedContainer.stop()
-      // await environment.stop()
-      await environment.down()
+      await startedContainer.stop()
+      // await environment.down()// await environment.stop()
     }
 
   })
