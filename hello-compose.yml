@@ -1,0 +1,8 @@
+#docker-compose --file npm-registries.yml up
+version: '2'
+services:
+  hello:
+    container_name: npm1
+    image: "avdim/ktor_hello:latest"
+    ports:
+      - "8080:8080"
