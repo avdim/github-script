@@ -35,22 +35,7 @@ describe('npm-api', () => {
     //https://github.com/npm/npm-registry-client
     //https://github.com/postmanlabs/npm-cli-login/blob/master/lib/login.js#L51
     await publishAsync(REGISTRY, TGZ_PATH, MODULE_NAME, AUTH)
-
-    // REG_CLIENT.get(
-    //   REGISTRY,
-    //   {
-    //     auth: AUTH,
-    //     fullMetadata: true
-    //   },
-    //   (err: any, data: any) => {
-    //     if (err) {
-    //       console.log("err: ", err)
-    //     } else {
-    //       console.log("regClient.get data: ", data)
-    //     }
-    //   }
-    // );
-
+    expect(await getModuleInfo(REGISTRY, MODULE_NAME, "1.0.1", AUTH) != undefined).toEqual(true)
   })
 
 })
@@ -77,12 +62,33 @@ async function publishAsync(registryUrl: string, tgzPath: string, moduleName: st
           console.log("err: ", err)
           reject(err)
         } else {
-          console.log("regClient.publish data: ", data)
           resolve(data)
         }
       }
     )
     // setTimeout(() => resolve("готово!"), 1000)
   });
+}
+
+async function getModuleInfo(registryUrl: string, moduleName:String, version:string, auth: any): Promise<unknown> {
+  let regInfo:any = await new Promise((resolve: (value?: unknown) => void, reject: (reason?: any) => void) => {
+    const regClient = new RegClient();
+    regClient.get(
+      registryUrl + `/${moduleName}`,
+      {
+        auth: auth,
+        fullMetadata: true
+      },
+      (err: any, data: any) => {
+        if (err) {
+          console.log("err: ", err)
+          reject(err)
+        } else {
+          resolve(data)
+        }
+      }
+    );
+  });
+  return regInfo.versions[version]
 }
 
