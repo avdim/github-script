@@ -6,7 +6,6 @@ const RegClient = require('npm-registry-client');
 const npm = require('../src/npm.js')
 const REGISTRY = 'http://localhost:55552'
 const MODULE_NAME = 'test-package'
-const REG_CLIENT = new RegClient();
 
 const TGZ_PATH = path.resolve(__dirname, "resources", "test-package-1.0.1.tgz");
 const AUTH = {
@@ -66,7 +65,6 @@ async function publishAsync(registryUrl: string, tgzPath: string, moduleName: st
         }
       }
     )
-    // setTimeout(() => resolve("готово!"), 1000)
   });
 }
 
