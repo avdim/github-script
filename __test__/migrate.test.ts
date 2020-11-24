@@ -31,9 +31,6 @@ describe('migrate', () => {
     console.log("mappedPort: ", mappedFromPort)
     const FROM = `http://localhost:${mappedFromPort}`
 
-    function timeout(ms: number) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
     console.log("before timeout", new Date().getSeconds())
     await timeout(5_000)
     console.log("after timeout", new Date().getSeconds())
@@ -55,3 +52,7 @@ describe('migrate', () => {
 
   })
 })
+
+function timeout(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
