@@ -5,48 +5,21 @@ const async = require('async')
 const RegClient = require('npm-registry-client');
 const fs = require('fs')
 
-const publishAsync = function (registry, path, callback) {
-  if (false) {//todo check true
-      let regClient = new RegClient();
-      let tgz = path + '.tgz'
-      console.log("upload tgz: ", tgz)
-
-      regClient.publish(
-        registry,
-        {
-          body: fs.createReadStream(tgz),
-          metadata: {
-            name: "test-package",//todo argument
-            version: "1.0.1"
-          },
-          auth : {
-            username: "Username",
-            password: "Password",
-            email: "test@example.com"
-          }
-        },
-        (err, data) => {
-
-          if (err) return callback(err);
-
-          callback(null, path)
-        }
-      )
-  } else {
-    npm.load({
-        registry: registry
-    }, () => {
-
-        let tgz = path + '.tgz'
-
-        npm.commands.publish([tgz], (err, data) => {
-
-            if (err) return callback(err);
-
-            callback(null, path)
-        })
+function uploadNpmPackageOld(registry, tgzPath, path, callback) {
+  npm.load({
+    registry: registry
+  }, () => {
+    npm.commands.publish([tgzPath], (err, data) => {
+      if (err) return callback(err);
+      callback(null, path)
     })
-  }
+  })
+}
+
+const publishAsync = function (registry, path, callback) {
+  const tgzPath = path + '.tgz'
+  console.log("tgzPath: ", tgzPath)
+  uploadNpmPackageOld(registry, tgzPath, path, callback);
 }
 
 const getTarball = function (moduleName, registry, version, callback) {
