@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import {GenericContainer, StartedTestContainer} from "testcontainers";
+import {addUser} from "../src/npm-api";
 
 const RegClient = require('npm-registry-client');
 
@@ -54,26 +55,6 @@ describe('npm-api', () => {
 
 function testSkip(name: string, lambda: any) {
 
-}
-
-async function addUser(registryUrl: string, auth: any): Promise<unknown> {
-  return await new Promise((resolve: (value?: unknown) => void, reject: (reason?: any) => void) => {
-    const regClient = new RegClient();
-    regClient.adduser(
-      registryUrl,
-      {
-        auth: auth
-      },
-      (err: any, data: any) => {
-        if (err) {
-          console.log("err: ", err)
-          reject(err)
-        } else {
-          resolve(data)
-        }
-      }
-    )
-  });
 }
 
 async function publishAsync(registryUrl: string, tgzPath: string, moduleName: string, auth: any): Promise<unknown> {
