@@ -22,10 +22,6 @@ describe('migrate', () => {
     const startedContainer = await container
       .withExposedPorts(DEFAULT_NPM_PORT)
       .start();
-    //todo speedup to local test
-    // const startedContainer = await new GenericContainer("temp/npm_test_package", "tag1")
-    //   .withExposedPorts(DEFAULT_NPM_PORT)
-    //   .start()
 
     let mappedFromPort: number = startedContainer.getMappedPort(DEFAULT_NPM_PORT);
     console.log("mappedPort: ", mappedFromPort)
