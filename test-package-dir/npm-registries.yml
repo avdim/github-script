@@ -3,7 +3,7 @@ version: '2'
 services:
   npm1:
     container_name: npm1
-    image: verdaccio/verdaccio
+    image: temp/npm_test_package:tag1 #todo build in test
     ports:
       - "55551:4873"
     volumes:

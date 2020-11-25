@@ -2,22 +2,24 @@ const npm = require('./npm.js')
 const mv = require('mv')
 const curry = require('lodash.curry')
 const async = require('async')
+const RegClient = require('npm-registry-client');
+const fs = require('fs')
+
+function uploadNpmPackageOld(registry, tgzPath, path, callback) {
+  npm.load({
+    registry: registry
+  }, () => {
+    npm.commands.publish([tgzPath], (err, data) => {
+      if (err) return callback(err);
+      callback(null, path)
+    })
+  })
+}
 
 const publishAsync = function (registry, path, callback) {
-
-    npm.load({
-        registry: registry
-    }, () => {
-
-        let tgz = path + '.tgz'
-
-        npm.commands.publish([tgz], (err, data) => {
-
-            if (err) return callback(err);
-
-            callback(null, path)
-        })
-    })
+  const tgzPath = path + '.tgz'
+  console.log("tgzPath: ", tgzPath)
+  uploadNpmPackageOld(registry, tgzPath, path, callback);
 }
 
 const getTarball = function (moduleName, registry, version, callback) {
