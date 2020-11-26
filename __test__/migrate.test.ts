@@ -1,6 +1,7 @@
 import {DockerComposeEnvironment, StartedTestContainer} from "testcontainers";
 import * as path from "path";
 
+import {addUser} from "../src/npm-api";
 const npmCliLogin = require('npm-cli-login');
 const migrate = require('../src/npm-migrate')
 const npmUtils = require('../src/npm_utils')
@@ -33,8 +34,8 @@ describe('migrate', () => {
 
     // const environment = await new DockerComposeEnvironment(ROOT_PATH, "npm-registries.yml").up();
     npmCliLogin("Username", "Password", "test@example.com", FROM)
+    // await addUser(TO, AUTH)
     // npmCliLogin("Username", "Password", "test@example.com", TO)
-    //sh: node_modules/.bin/npm-cli-login -u Username -p Password -e test@example.com -r http://localhost:55551
 
     try {
       await migrate(MODULE_NAME, FROM, TO, {debug: true})
