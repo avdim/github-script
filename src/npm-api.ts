@@ -1,5 +1,7 @@
 import * as fs from "fs";
+import * as http from "http";
 import {GenericContainer, StartedTestContainer} from "testcontainers";
+import * as path from "path";
 
 const RegClient = require('npm-registry-client');
 const DEFAULT_NPM_PORT = 4873
@@ -47,6 +49,25 @@ export async function publishAsync(registryUrl: string, tgzPath: string, moduleN
       }
     )
   });
+}
+
+export async function downloadTarball(registryUrl: string, moduleName: String, version: string, auth: any): Promise<string> {
+  let moduleInfo:any = await getModuleInfo(registryUrl, moduleName, version, auth);
+  const tarballUrl = moduleInfo.dist.tarball as string;
+  const tempTgzPath: string = path.join(__dirname, `../.tmp/tmp-${Math.random()}.tgz`)
+  await new Promise(resolve => {
+    fs.mkdir(path.join(__dirname, `../.tmp/`), () => {
+      resolve()
+    })
+  })
+  const file = fs.createWriteStream(tempTgzPath);
+  return await new Promise<string>(resolve => {
+    const request = http.get(tarballUrl, function(response) {
+      response.pipe(file);
+      resolve(tempTgzPath)
+    });
+  })
+
 }
 
 export async function getModuleInfo(registryUrl: string, moduleName: String, version: string, auth: any): Promise<unknown> {
