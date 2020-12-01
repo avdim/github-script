@@ -15,7 +15,7 @@ fun assertFalse(expect:Boolean, actual:Boolean) {
 @Test
 fun checkSuccess() {
   assertTrue(
-    verify("@tutu/succes-package")
+    verify("@tutu/success-package")
   )
 }
 
