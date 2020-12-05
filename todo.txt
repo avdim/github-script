@@ -1,4 +1,5 @@
 
+https://github.com/node-gradle/gradle-node-plugin
 https://gitlab.com/lt.petuska/npm-publish
 Users/dim/Desktop/github/petuska/npm-publish
 
